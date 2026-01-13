@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import utils
 from matplotlib.animation import FuncAnimation, PillowWriter
 
 class Visualizer:
@@ -60,10 +61,10 @@ class Visualizer:
         self.trail = int(trail)
         self.interval_ms = int(interval_ms)
 
-        self.fig, self.ax = plt.subplots(dpi=dpi)
+        self.fig, self.ax = plt.subplots(dpi=dpi, figsize=(6.4, 6.4))
         if equal_aspect:
             self.ax.set_aspect("equal", adjustable="box")
-
+        utils.prettify_axes(self.ax)
         self._xlim = xlim
         self._ylim = ylim
 

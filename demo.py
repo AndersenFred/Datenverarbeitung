@@ -1,5 +1,7 @@
 import numpy as np
+from tqdm import tqdm
 from Visualizer import Visualizer
+import utils
 
 def accel_gravity(pos, mass, G=1.0, eps=1e-2):
     """
@@ -19,6 +21,7 @@ def accel_gravity(pos, mass, G=1.0, eps=1e-2):
     return a
 
 def main():
+    utils.set_latex_style(False)
     # --- simulation parameters
     N = 30
     steps = 4000
@@ -43,7 +46,7 @@ def main():
     # --- velocity Verlet integration
     a = accel_gravity(pos, mass, G=G, eps=eps)
 
-    for step in range(steps):
+    for step in tqdm(range(steps)):
         # drift
         pos = pos + vel * dt + 0.5 * a * dt * dt
         # kick
