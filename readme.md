@@ -52,4 +52,4 @@ nbody.gif
 ```
 
 in the project directory.
-![](https://github.com/AndersenFred/Datenverarbeitung/nbody.gif)
+![](https://github.com/AndersenFred/Datenverarbeitung/blob/main/nbody.gif)
