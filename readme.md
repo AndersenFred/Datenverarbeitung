@@ -18,7 +18,7 @@
 
 
 ## Installation (Conda environment)
-
+Only at home, not in Cip
 1. Open a terminal in the project directory.
 
 2. Create the environment:
@@ -36,6 +36,17 @@
 That’s it. All required packages (NumPy, Matplotlib, Pillow) are now available.
 
 ---
+## using git
+```bash
+git clone git@github.com:AndersenFred/Datenverarbeitung.git # this copies the procject to you local computer
+git checkout -b <your branch>
+```
+
+Once you have included some features
+```bash
+git checkout main
+git merge
+```
 
 ## Running the demo
 
