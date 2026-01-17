@@ -1,8 +1,15 @@
 
+## Before you start (Git & SSH)
 
-# N-Body Simulation -- Project
-[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-[https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+If you have never used Git with SSH before, follow these guides **once**:
+
+* Generate and register an SSH key:
+  [https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+* First-time Git setup:
+  [https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+
+---
 
 ## Project structure
 
@@ -10,15 +17,16 @@
 .
 ├── environment.yml     # Conda environment (name: DV)
 ├── demo.py             # Example N-body simulation
-├── Visualizer.py        # Visualizer class (creates GIF animations)
+├── Visualizer.py       # Visualization class (creates GIF animations)
 └── README.md
 ```
 
 ---
 
-
 ## Installation (Conda environment)
-Only at home, not in Cip
+
+ **Only run this on your personal computer (not on CIP).**
+
 1. Open a terminal in the project directory.
 
 2. Create the environment:
@@ -27,25 +35,37 @@ Only at home, not in Cip
    conda env create -f environment.yml
    ```
 
-3. Activate it:
+3. Activate the environment:
 
    ```bash
    conda activate DV
    ```
 
-That’s it. All required packages (NumPy, Matplotlib, Pillow) are now available.
+All required packages (NumPy, Matplotlib, Pillow) are now installed.
 
 ---
-## using git
+
+## Using Git
+
+Clone the repository to your local machine:
+
 ```bash
-git clone git@github.com:AndersenFred/Datenverarbeitung.git # this copies the procject to you local computer
-git checkout -b <your branch>
+git clone git@github.com:AndersenFred/Datenverarbeitung.git
+cd Datenverarbeitung
 ```
 
-Once you have included some features
+Create your own working branch:
+
+```bash
+git checkout -b <your-branch-name>
+```
+
+Work **only on your own branch**.
+Once you have implemented new features:
+
 ```bash
 git checkout main
-git merge
+git merge <your-branch-name>
 ```
 
 ## Running the demo
@@ -56,48 +76,63 @@ After activating the environment:
 python demo.py
 ```
 
-When the script finishes, you will find:
+When the script finishes, a file called
 
 ```
 nbody.gif
 ```
 
-in the project directory.
+will appear in the project directory.
+
+Example output:
+
 ![](https://github.com/AndersenFred/Datenverarbeitung/blob/main/nbody.gif)
 
-# VS Code
-For loading
+---
+
+## VS Code (CIP)
+
+On CIP systems, load and start VS Code using:
+
 ```bash
 module load vscode
-```
-and then for launching it
-```bash 
 code
 ```
 
-# Ideas
-- [ ] Reflecting walls $\to$ clamp positions at box edges, flip velocity component
-- [ ] Periodic boundaries $\to$ modulo position by box size
-- [ ] Central force (harmonic trap) $\to$ add F = -k r to acceleration
-- [ ] Lennard–Jones–type force $\to$ pairwise force with cutoff radius
-- [ ] Velocity-dependent drag $\to$ add F = -$\gamma$ v
-- [ ] External constant field $\to$ add uniform acceleration (e.g. gravity)
-- [ ] Two-species particles $\to$ store type array, condition forces on type
-- [ ] Soft collisions $\to$ short-range repulsive force instead of hard contact
-- [ ] Hard-sphere collisions $\to$ detect overlap, swap normal velocity components
-- [ ] Random kicks (noise) $\to$ add small Gaussian velocity increments
-- [ ] Initial condition presets $\to$ functions for lattice, ring, or disk setups
+---
+
+## Extension ideas
 
 
-# Analysis ideas
-- [ ] Total energy vs time $\to$ compute kinetic + potential each step, plot drift
-- [ ] Momentum conservation $\to$ sum $m\cdot v$ and check constancy
-- [ ] Center-of-mass motion $\to$ track COM position and velocity
-- [ ] Speed distribution $\to$ histogram of |v| at fixed times
-- [ ] Pair distance distribution $\to$ histogram of |r_i − r_j|
-- [ ] Radial density profile $\to$ bin particles by distance from origin
-- [ ] Timestep dependence $\to$ repeat run with different dt and compare outcomes
-- [ ] Collision rate $\to$ count overlaps or collision events per unit time
-- [ ] Energy exchange $\to$ track kinetic energy per particle over time
-- [ ] Equilibration time $\to$ monitor when macroscopic quantities stabilize
-- [ ] Chaos indicator (qualitative) $\to$ compare two nearby initial conditions
+```text
+- [ ] Reflecting walls → clamp positions at box edges, flip velocity component
+- [ ] Periodic boundaries → modulo position by box size
+- [ ] Central force (harmonic trap) → add F = -k r to acceleration
+- [ ] Lennard–Jones–type force → pairwise force with cutoff radius
+- [ ] Velocity-dependent drag → add F = -γ v
+- [ ] External constant field → add uniform acceleration (e.g. gravity)
+- [ ] Two-species particles → store type array, condition forces on type
+- [ ] Soft collisions → short-range repulsive force instead of hard contact
+- [ ] Hard-sphere collisions → detect overlap, swap normal velocity components
+- [ ] Random kicks (noise) → add small Gaussian velocity increments
+- [ ] Initial condition presets → lattice, ring, or disk setups
+```
+
+## Analysis ideas
+
+
+```text
+- [ ] Total energy vs time → compute kinetic + potential energy
+- [ ] Momentum conservation → sum m·v and check constancy
+- [ ] Center-of-mass motion → track COM position and velocity
+- [ ] Speed distribution → histogram of |v|
+- [ ] Pair distance distribution → histogram of |r_i − r_j|
+- [ ] Radial density profile → bin particles by distance from origin
+- [ ] Timestep dependence → compare results for different dt
+- [ ] Collision rate → count collision events per unit time
+- [ ] Energy exchange → track kinetic energy per particle
+- [ ] Equilibration time → detect when observables stabilize
+- [ ] Chaos indicator (qualitative) → compare nearby initial conditions
+```
+
+
