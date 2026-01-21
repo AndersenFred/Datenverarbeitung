@@ -23,7 +23,7 @@ def accel_gravity(pos, mass, G=1.0, eps=1e-2):
 def main():
     utils.set_latex_style(False)
     # --- simulation parameters
-    N = 30
+    N = 300
     steps = 4000
     dt = 2e-3
     m = 10               # capture every m timesteps
@@ -34,8 +34,8 @@ def main():
 
     # --- initial conditions (roughly bound "cloud")
     mass = rng.uniform(0.5, 2.0, size=N)
-    pos = rng.normal(scale=0.5, size=(N, 2))
-    vel = rng.normal(scale=0.3, size=(N, 2))
+    pos = rng.normal(scale=5, size=(N, 2))
+    vel = rng.normal(scale=3, size=(N, 2))
 
     # remove net momentum
     vel -= np.average(vel, axis=0, weights=mass)
@@ -56,9 +56,9 @@ def main():
 
         if step % m == 0:
             viz.capture(pos, t=step * dt)
-
-    out = viz.save_gif("nbody.gif", fps=30)
-    print(f"Wrote {out}")
+    viz.show()
+    #out = viz.save_gif("nbody.gif", fps=30)
+    #print(f"Wrote {out}")
 
 if __name__ == "__main__":
     main()
