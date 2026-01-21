@@ -1,2 +1,5 @@
+<<<<<<< HEAD
 first comit
+=======
+>>>>>>> main
 first commit
