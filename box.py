@@ -20,7 +20,15 @@ def accel_gravity(pos, mass, G=1.0, eps=1e-2):
         a[i] = G * np.sum((mass[:, None] * r) * inv_dist3[:, None], axis=0)
     return a
 
+def force(pos, mass):
+    return 0
 
+def acceleration(pos, velocity, masses):
+    return np.random(0, 10, size=np.shape(pos))    # Zittern, Gaußsches rauschen
+
+def box_edge():
+    '''flip velocity when at edges'''
+    pass
 
 def main():
     utils.set_latex_style(False)
@@ -28,12 +36,19 @@ def main():
     N = 30
     steps = 4000
     dt = 2e-3
-  
+    box_size = 500
     m = 10               # capture every m timesteps
     G = 1.0
     eps = 2e-2
-   
-        
+    pos = np.random.normal(0,10, size=(N=2)) # positions
+    vel = np.random.normal(0,10, size=(N=2)) # velocity
+    viz = Visualizer(N, trail=0, interval_ms=30, marker_size=18)
+    for step in tqdm(range(steps)):
+        pos = pos +vel * dt + 0.5 * a * dt * dt
+        #kick
+        a_new = force(pos, mass)
+        vel =
+        a = a_new
 
 
 
