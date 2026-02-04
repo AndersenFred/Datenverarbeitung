@@ -101,8 +101,16 @@ code
 
 ---
 
-## Extension ideas
+# Collision formular
+```latex
+p_i+p_j&\to p_i'+p_j'\\
+n_{ij}&=\frac{x_i-x_j}{||x_i-x_j||}\\
+v_i'&=v_i-\frac{2m_j}{m_i+m_j}[(v_i-v_j)\cdot n_{ij}]n_{ij}\\
+v_j'&=v_j-\frac{2m_i}{m_i+m_j}[(v_j-v_i)\cdot n_{ji}]n_{ji}
+```
 
+## Extension ideas
+(Coding a Physics Engine from scratch!)[https://www.youtube.com/watch?v=nXrEX6j-Mws]
 
 ```text
 - [ ] Reflecting walls → clamp positions at box edges, flip velocity component
