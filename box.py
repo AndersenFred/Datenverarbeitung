@@ -32,7 +32,7 @@ def collision(m: np.array, x: np.array, v: np.array, r: np.array, stability: flo
     for i in range(len(v)):
         for j in range(i+1,len(v)):
             if np.sum((x[i]-x[j])**2<(r[i]**2+r[j]**2)):
-                n = (x[i]-x[j])/(np.abs(x[i]-x[j])+stability)
+                n = (x[i]-x[j])/(np.linalg.norm(x[i]-x[j])+stability)
                 v[i] = v[i] - (2*m[j])/((m[i]+m[j])+stability)*np.dot((v[i]-v[j]),n)*n
                 v[j] = v[j] - (2*m[i])/((m[i]+m[j])+stability)*np.dot((v[j]-v[i]),-n)*(-n)
             
@@ -44,7 +44,7 @@ def main():
     steps = 4000
     dt = 2e-3
     m = 1
-    radius = np.ones(N)
+    radius = np.ones(N) * 0.1
     masses = np.random.random(N)
     box_size = ((-100,100),(-100,100))
     eps = 2e-2
