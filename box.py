@@ -6,7 +6,7 @@ import utils
 
 def acceleration(pos, velocity, masses):
     '''May the force be with you'''
-    return np.random.normal(0, 1, size=np.shape(pos))
+    return np.random.normal(0, 10, size=np.shape(pos)) - 0.05 * velocity
 
 def box_edge(pos, velecoty, box_size):
     '''Flip velecoty when at edges'''
@@ -31,25 +31,26 @@ def collision(m: np.array, x: np.array, v: np.array, r: np.array, stability: flo
     
     for i in range(len(v)):
         for j in range(i+1,len(v)):
-            if np.sum((x[i]-x[j])**2<(r[i]**2+r[j]**2)):
+            if np.sum(np.sqrt((x[i]-x[j])**2))<(r[i]+r[j]):
                 n = (x[i]-x[j])/(np.linalg.norm(x[i]-x[j])+stability)
-                v[i] = v[i] - (2*m[j])/((m[i]+m[j])+stability)*np.dot((v[i]-v[j]),n)*n
-                v[j] = v[j] - (2*m[i])/((m[i]+m[j])+stability)*np.dot((v[j]-v[i]),-n)*(-n)
+                if np.dot((v[i]-v[j]),n) > 0:
+                    v[i] = v[i] - (2*m[j])/((m[i]+m[j]))*np.dot((v[i]-v[j]),n)*n
+                    v[j] = v[j] - (2*m[i])/((m[i]+m[j]))*np.dot((v[j]-v[i]),n)*(n)
             
-    return v
+    return v * 0.999
 def main():
     utils.set_latex_style(False)
     mass = 1
-    N = 30
+    N = 50
     steps = 4000
     dt = 2e-3
     m = 1
-    radius = np.ones(N) * 0.1
-    masses = np.random.random(N)
+    radius = np.ones(N) * 3 
+    masses = 1 + np.random.random(N) * 3
     box_size = ((-100,100),(-100,100))
     eps = 2e-2
     pos = np.random.normal(0, 100, size=(N,2))# positions
-    vel = np.random.normal(0, 100, size=(N,2))# velocity
+    vel = np.random.normal(0, 500, size=(N,2))# velocity
     viz = Visualizer(N, trail=0, interval_ms=30, marker_size=18, xlim=(box_size[0][0], box_size[0][1]), ylim=(box_size[1][0], box_size[1][1]))
     for step in tqdm(range(steps)):
         # kick
